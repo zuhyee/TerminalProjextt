@@ -1,0 +1,18 @@
+# this is the weirdest idea
+
+import socket
+
+host = input("Host: ")
+
+ports = [21, 22, 25, 53, 80, 110, 143, 443, 3306, 8080]
+
+print(f"\nScanning {host}...\n")
+
+for port in ports:
+    sock = socket.socket()
+    sock.settimeout(0.5)
+
+    if sock.connect_ex((host, port)) == 0:
+        print(f"[OPEN] {port}")
+
+    sock.close()
