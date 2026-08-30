@@ -1,0 +1,19 @@
+import random
+
+numbers = list(range(1, 10))
+random.shuffle(numbers)
+
+print(" ".join(map(str, numbers)))
+
+input("\nPress ENTER...")
+print("\n" * 30)
+
+answer = input("Enter the numbers in order: ")
+
+correct = " ".join(map(str, numbers))
+
+if answer == correct:
+    print("🔥 PERFECT")
+else:
+    print("❌ Wrong")
+    print("Correct:", correct)
