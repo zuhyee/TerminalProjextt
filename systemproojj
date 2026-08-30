@@ -1,0 +1,33 @@
+import os
+import platform
+import shutil
+from datetime import datetime
+
+def clear():
+    os.system("cls" if os.name == "nt" else "clear")
+
+def main():
+    clear()
+
+    total, used, free = shutil.disk_usage("/")
+
+    print("""
+╔══════════════════════════════════════╗
+║          SYSTEM DASHBOARD            ║
+╠══════════════════════════════════════╣
+""")
+
+    print(f"║ OS       : {platform.system()} {platform.release()}")
+    print(f"║ Machine  : {platform.machine()}")
+    print(f"║ Python   : {platform.python_version()}")
+    print(f"║ CPU      : {os.cpu_count()} cores")
+    print(f"║ Disk     : {used // (1024**3)} GB used")
+    print(f"║ Free     : {free // (1024**3)} GB")
+    print(f"║ Time     : {datetime.now().strftime('%H:%M:%S')}")
+
+    print("""
+╚══════════════════════════════════════╝
+""")
+
+if __name__ == "__main__":
+    main()
