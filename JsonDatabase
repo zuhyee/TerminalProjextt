@@ -1,0 +1,43 @@
+import json
+from pathlib import Path
+
+FILE = Path("users.json")
+
+if FILE.exists():
+    users = json.loads(FILE.read_text())
+else:
+    users = []
+
+while True:
+    print("\n1. Add user")
+    print("2. Show users")
+    print("3. Search")
+    print("4. Exit")
+
+    choice = input("> ")
+
+    if choice == "1":
+        name = input("Name: ")
+        age = int(input("Age: "))
+
+        users.append({
+            "name": name,
+            "age": age
+        })
+
+        FILE.write_text(json.dumps(users, indent=4))
+        print("[+] Saved")
+
+    elif choice == "2":
+        for user in users:
+            print(f"{user['name']} — {user['age']}")
+
+    elif choice == "3":
+        query = input("Search: ").lower()
+
+        for user in users:
+            if query in user["name"].lower():
+                print(user)
+
+    elif choice == "4":
+        break
