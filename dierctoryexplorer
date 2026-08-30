@@ -1,0 +1,26 @@
+from pathlib import Path
+
+current = Path.cwd()
+
+while True:
+    print(f"\n📁 {current}\n")
+
+    for item in current.iterdir():
+        icon = "📁" if item.is_dir() else "📄"
+        print(f"{icon} {item.name}")
+
+    command = input("\n> ")
+
+    if command == "exit":
+        break
+
+    elif command == "..":
+        current = current.parent
+
+    else:
+        target = current / command
+
+        if target.is_dir():
+            current = target
+        else:
+            print("Not a directory.")
