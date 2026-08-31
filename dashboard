@@ -1,0 +1,59 @@
+import os
+import platform
+import shutil
+import time
+from datetime import datetime
+
+
+def line(char="─", length=55):
+    return char * length
+
+
+def get_disk_usage():
+    total, used, free = shutil.disk_usage("/")
+    return {
+        "total": total // (1024 ** 3),
+        "used": used // (1024 ** 3),
+        "free": free // (1024 ** 3),
+    }
+
+
+def show_dashboard():
+    disk = get_disk_usage()
+
+    print("\n" + line("═"))
+    print("              SYSTEM DASHBOARD")
+    print(line("═"))
+
+    print(f" OS           : {platform.system()} {platform.release()}")
+    print(f" Machine      : {platform.machine()}")
+    print(f" Python       : {platform.python_version()}")
+    print(f" Hostname     : {platform.node()}")
+    print(f" Time         : {datetime.now():%Y-%m-%d %H:%M:%S}")
+
+    print("\n" + line())
+    print(" DISK STORAGE")
+    print(line())
+
+    print(f" Total        : {disk['total']} GB")
+    print(f" Used         : {disk['used']} GB")
+    print(f" Free         : {disk['free']} GB")
+
+    print("\n" + line("═"))
+    print(" STATUS       : ONLINE")
+    print(line("═") + "\n")
+
+
+def countdown(seconds):
+    for remaining in range(seconds, 0, -1):
+        print(f"\rRefreshing in {remaining}s...", end="")
+        time.sleep(1)
+
+    print("\r" + " " * 30 + "\r")
+
+
+if __name__ == "__main__":
+    try:
+        show_dashboard()
+    except KeyboardInterrupt:
+        print("\n\nDashboard terminated.")
