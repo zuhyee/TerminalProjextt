@@ -1,0 +1,29 @@
+import random
+import time
+import os
+
+os.system("cls" if os.name == "nt" else "clear")
+
+messages = [
+    "Scanning ports...",
+    "Analyzing network...",
+    "Decrypting packets...",
+    "Checking permissions...",
+    "Searching for vulnerabilities...",
+    "Injecting payload...",
+    "Bypassing firewall..."
+]
+
+print("=== RAY SYSTEM SCANNER ===\n")
+
+for i in range(15):
+    msg = random.choice(messages)
+    percent = random.randint(1, 99)
+
+    print(f"[{percent:02}%] {msg}")
+    time.sleep(random.uniform(0.1, 0.4))
+
+print("\nSCAN COMPLETE.")
+print(f"Threats found: {random.randint(0, 7)}")
+print(f"Security level: {random.choice(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'])}")
+print(f"System ID: {random.randint(100000, 999999)}")
