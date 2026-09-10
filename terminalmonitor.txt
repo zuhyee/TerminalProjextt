@@ -1,0 +1,57 @@
+import time
+import urllib.request
+from datetime import datetime
+
+TARGETS = {
+    "GitHub": "https://github.com",
+    "Google": "https://google.com",
+    "CS50": "https://cs50.harvard.edu",
+}
+
+
+def check_site(name, url):
+    start = time.time()
+
+    try:
+        response = urllib.request.urlopen(url, timeout=5)
+        delay = round((time.time() - start) * 1000)
+
+        if response.status == 200:
+            status = "ONLINE"
+        else:
+            status = f"HTTP {response.status}"
+
+        return status, delay
+
+    except:
+        return "OFFLINE", None
+
+
+def dashboard():
+    print("\033[2J\033[H", end="")
+
+    print("╔══════════════════════════════════════╗")
+    print("║             N E X U S                ║")
+    print("║        SYSTEM MONITOR v1.0           ║")
+    print("╚══════════════════════════════════════╝")
+
+    print()
+    print("TIME:", datetime.now().strftime("%H:%M:%S"))
+    print("-" * 40)
+
+    for name, url in TARGETS.items():
+
+        status, delay = check_site(name, url)
+
+        if delay is not None:
+            print(f"{name:<10} [{status:<7}] {delay} ms")
+        else:
+            print(f"{name:<10} [{status:<7}]")
+
+    print("-" * 40)
+    print("Refreshing in 5 seconds...")
+
+
+while True:
+    dashboard()
+    time.sleep(5)
