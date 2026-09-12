@@ -1,0 +1,36 @@
+import os
+import platform
+import socket
+import time
+import random
+
+GREEN = "\033[92m"
+RESET = "\033[0m"
+
+def loading(text):
+    print(f"{GREEN}{text}{RESET}", end="")
+    for _ in range(3):
+        time.sleep(0.4)
+        print(".", end="", flush=True)
+    print(" DONE")
+
+print(f"{GREEN}")
+print("╔══════════════════════════════════╗")
+print("║        G H O S T  S C A N       ║")
+print("╚══════════════════════════════════╝")
+print(RESET)
+
+loading("Initializing scanner")
+
+print(f"\nOS       : {platform.system()}")
+print(f"Machine  : {platform.machine()}")
+print(f"Hostname : {socket.gethostname()}")
+
+loading("Scanning system")
+
+fake_results = [
+    "No threats detected",
+    "Firewall status: ACTIVE",
+    "Network status: SECURE",
+    "Unknown process: 0",
+   
