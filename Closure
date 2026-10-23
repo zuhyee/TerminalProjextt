@@ -1,0 +1,8 @@
+Import random
+Import shuffle
+
+Equal = Int(Input("Hours: "))
+
+For I in Equal:
+   if Equal > 70
+     Print : ("no")
