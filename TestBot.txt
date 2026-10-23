@@ -1,4 +1,0 @@
-Import random 
-
-Random.gene(): Int(Input("Number: "))
-# TESTTESTTEST
